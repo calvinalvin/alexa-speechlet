@@ -87,9 +87,19 @@ class Speechlet {
     return this;
   }
 
-
-
+  /**
+  * outputs the speech markup as a string. This does not include the root <speak></speak> node in the output`
+  * if you are working with the official `alexa-sdk` then the `emit()` fn will wrap the ssml with the <speak> node for you
+  * if you need the <speak> nodes then use the `outputWithRootNode()` fn
+  */
   output() {
+    return `${this._markup.join('')}`;
+  }
+
+  /**
+  * outputs the markup as a string just like the `output()` fn, except this includes wraps with the root <speak></speak> nodes
+  */
+  outputWithRootNode() {
     return `<speak>${this._markup.join('')}</speak>`;
   }
 }
