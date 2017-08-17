@@ -12,7 +12,8 @@ class Speechlet {
   }
 
   sentence(text) {
-    if (text[text.length-1] !== '.') {
+    let endPunctuation = ['?', '.'];
+    if (!endPunctuation.includes(text[text.length-1])) {
       text += '.';
     }
     this.say(text);
@@ -23,7 +24,7 @@ class Speechlet {
     let openTag = '<say-as';
     let closeTag = '</say-as>'
     if (options.interpretAs) {
-      openTag += ` interpret-as="'${options.interpretAs}"`;
+      openTag += ` interpret-as="${options.interpretAs}"`;
     }
 
     this._markup.push(`${openTag}>${text}${closeTag}`);
@@ -58,7 +59,7 @@ class Speechlet {
   * Convenience method for doing amazon:effect name="whisper"
   */
   whisper(text) {
-    this.amazonEffect(text, { name: "whisper" });
+    this.amazonEffect(text, { name: "whispered" });
     return this;
   }
 
