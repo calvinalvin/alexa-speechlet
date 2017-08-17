@@ -28,7 +28,8 @@ Adds text to the markup without adding any additional markup. It will spit out e
 ##### sentence(text)
 - text {String} - What Alexa says
 A convenience method that makes sure that a period '.' is applied to the end of the text
-```
+
+```js
 let speechlet = new Speechlet().sentence("Hi, my name is Alexa");
 // outputs:
 // Hi, my name is Alexa.
@@ -39,7 +40,8 @@ let speechlet = new Speechlet().sentence("Hi, my name is Alexa");
 - options {Object}
  - options.interpretAs adds 'interpret-as' attr to the markup. Such as <say-as interpret-as="spell-out">
 Appends <say-as> markup to your text
-```
+
+```js
 let ssml = new Speechlet("I can count.").pause().sayAs("12345", {interpretAs: "digits"}).output();`
 // outputs:
 // I can count.<say-as interpret-as="digits">12345</say-as>
