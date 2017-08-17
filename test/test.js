@@ -3,23 +3,45 @@ const assert = require('assert');
 const _ = require('lodash');
 
 describe('Alexa speechlet tests', function() {
+  describe("#pause()", function() {
+    it("Adds <break> tag to text", function() {
+      let speechlet = new Speechlet("Hi I speak with long pauses.");
+      let ssml = speechlet.pause("2s").say("I know").pause("3s").say("I'm weird").output();
+      assert.equal(ssml, `Hi I speak with long pauses.<break time="2s" />I know<break time="3s" />I'm weird`);
+    });
+  });
+
+  describe("#prosody", function() {
+    it("Adds <prosody> tags", function() {
+      let speechlet = new Speechlet();
+      let ssml = speechlet.prosody("WAAA").output();
+      assert.equal(ssml, "<prosody>WAAA</prosody>");
+    });
+
+    it("Adds <prosody> tags with rate", function() {
+      let speechlet = new Speechlet();
+      let ssml = speechlet.prosody("WAAA", { rate: '100%' }).output();
+      assert.equal(ssml, `<prosody rate="100%">WAAA</prosody>`);
+    });
+
+    it("Adds <prosody> tags with pitch", function() {
+      let speechlet = new Speechlet();
+      let ssml = speechlet.prosody("WAAA", { pitch: 'x-low' }).output();
+      assert.equal(ssml, `<prosody pitch="x-low">WAAA</prosody>`);
+    });
+
+    it("Adds <prosody> tags with volume", function() {
+      let speechlet = new Speechlet();
+      let ssml = speechlet.prosody("WAAA", { volume: 'x-soft' }).output();
+      assert.equal(ssml, `<prosody volume="x-soft">WAAA</prosody>`);
+    });
+  });
+
   describe('#sentence()', function() {
-    it('should append a period to the end', function() {
+    it('wraps output with <s></s>', function() {
       let speechlet = new Speechlet();
       let ssml = speechlet.sentence("hi my name is alexa").output();
-      assert.equal(ssml, "hi my name is alexa.");
-    });
-
-    it('should not append a period if it already has one', function() {
-      let speechlet = new Speechlet();
-      let ssml = speechlet.sentence("hi my name is alexa.").output();
-      assert.equal(ssml, "hi my name is alexa.");
-    });
-
-    it('should not append a period if ends in question mark.', function() {
-      let speechlet = new Speechlet();
-      let ssml = speechlet.sentence("are you ok?").output();
-      assert.equal(ssml, "are you ok?");
+      assert.equal(ssml, "<s>hi my name is alexa</s>");
     });
   });
 
@@ -58,7 +80,7 @@ describe('Alexa speechlet tests', function() {
   });
 
   describe("#sayAsDate", function() {
-    it(`testing convenience methof for sayAsDate because it accepts an extra "format" param`, function() {
+    it(`testing convenience method for sayAsDate because it accepts an extra "format" param`, function() {
       let speechlet = new Speechlet();
       let format = "mdy";
       let ssml = speechlet.sayAsDate("September 2, 2015", "mdy").output();

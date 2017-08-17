@@ -20,7 +20,7 @@ let ssml = speech.sentence("I have a secret to tell you")
 
 ##### Remember to call output()
 
-You must execute the `output()` method on the speechlet instance in order to get the markup string. output() will not wrap the output in `<speak></speak>` xml nodes. If you are working with `alexa-sdk` the sdk will do that for you in the final output so the nodes were left out by default so it would be more convenient. If you, however, do want the output markup to be wrapped with the 'speak' nodes then you can call `outputWithRootNode()`,
+You must execute the `output()` method on the speechlet instance in order to get the markup string. output() will not wrap the output in `<speak></speak>` nodes. If you are working with `alexa-sdk` the sdk will do that for you in the final output. If you, however, do want the output markup to be wrapped with the 'speak' nodes then you can use `outputWithRootNode()`,
 
 #### Methods
 
@@ -35,7 +35,7 @@ Adds text to the markup without adding any additional markup. It will spit out e
 ##### sentence(text)
 - `text` | {String} - What Alexa says
 
-A convenience method that makes sure that a period '.' is applied to the end of the text
+Wraps your text with `<s></s>` tags.
 
 ```js
 let speechlet = new Speechlet().sentence("Hi, my name is Alexa");
@@ -49,7 +49,7 @@ let speechlet = new Speechlet().sentence("Hi, my name is Alexa");
 - `options` | {Object}
   - `options.interpretAs` adds 'interpret-as' attr to the markup. Such as `<say-as interpret-as="spell-out">`
 
-Appends <say-as> markup to your text
+Wraps your text with `<say-as>` tags
 
 ```js
 let ssml = new Speechlet("I can count.").pause().sayAs("12345", {interpretAs: "digits"}).output();`
@@ -97,7 +97,5 @@ let ssml = new Speechlet().sayAsDate("September 22, 2015", "mdy").output();`
 
 ##### pause(time)
 - `time` | {String} - The time value you want to pause
-- `options` | {Object}
-  - `options.interpretAs` adds 'interpret-as' attr to the markup. Such as `<say-as interpret-as="spell-out">`
 
-Appends <say-as> markup to your text
+Adds `<break>` markup to your text

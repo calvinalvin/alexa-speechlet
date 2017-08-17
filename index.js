@@ -38,15 +38,14 @@ class Speechlet {
   }
 
   sentence(text) {
-    let endPunctuation = ['?', '.'];
-    if (!endPunctuation.includes(text[text.length-1])) {
-      text += '.';
-    }
-    this.say(text);
+    this._markup.push(`<s>${text}</s>`);
     return this;
   }
 
-  sayAs(text, options) {
+  /**
+  * https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#say-as
+  */
+  sayAs(text, options={}) {
     let openTag = '<say-as';
     let closeTag = '</say-as>'
     if (options.interpretAs) {
@@ -73,10 +72,32 @@ class Speechlet {
   }
 
   /**
+  * https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#prosody
+  */
+  prosody(text, options={}) {
+    let openTag = '<prosody';
+    let closeTag = '</prosody>';
+    if (options.rate) {
+      openTag += ` rate="${options.rate}"`;
+    }
+    if (options.pitch) {
+      openTag += ` pitch="${options.pitch}"`;
+    }
+    if (options.volume) {
+      openTag += ` volume="${options.volume}"`;
+    }
+
+    this._markup.push(`${openTag}>${text}${closeTag}`);
+    return this;
+  }
+
+
+
+  /**
   * https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#amazon-effect
   *
   */
-  amazonEffect(text, options) {
+  amazonEffect(text, options={}) {
     let openTag = "<amazon:effect";
     let closeTag = "</amazon:effect>";
     if (options.name) {
@@ -98,7 +119,7 @@ class Speechlet {
   * https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#break
   * defaults to <break strength="strong">
   */
-  break(options) {
+  break(options={}) {
     let openTag = `<break`;
     if (options.time) {
       openTag += ` time="${options.time}"`;
