@@ -20,6 +20,16 @@ class Speechlet {
     });
   }
 
+  emphasis(text, options) {
+    let openTag = `<emphasis`;
+    let closeTag = '</emphasis>';
+    if (options.level) {
+      openTag += ` level="${options.level}"`;
+    }
+    this._markup.push(`${openTag}>${text}${closeTag}`);
+    return this;
+  }
+
   say(text) {
     this._markup.push(text);
     return this;

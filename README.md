@@ -169,7 +169,44 @@ let ssml = speechlet
 
 ---
 
+##### emphasis(text, options)
+- `text` | {String} - What Alexa says
+- `options` | {Object}
+  `options.level` - "strong", "moderate", "reduced"
+
+Wraps the text with `<emphasis>` tags. Emphasize the tagged words or phrases. Emphasis changes rate and volume of the speech. More emphasis is spoken louder and slower. Less emphasis is quieter and faster. See [docs](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#emphasis)
+
+```js
+let speechlet = new Speechlet();
+let ssml = speechlet
+  .say("I already told you I")
+  .emphasis("really like", { level: "strong" })
+  .say("that person")
+  .output();
+
+// outputs:
+// I already told you I<emphasis level="strong">really like</emphasis>that person
+// then emit with alexa-sdk
+// this.emit(':tell', ssml);
+```
+
+---
+
 ##### pause(time)
 - `time` | {String} - The time value you want to pause
 
 Convenience method for break. Adds `<break>` markup to your text with a time value. If you want more flexibility, use the `break()` fn. Represents a pause in the speech. Set the length of the pause with the strength or time attributes.
+
+```js
+let speechlet = new Speechlet();
+let ssml = speechlet
+  .say("Hmm let me think for a sec")
+  .pause("3s")
+  .say("Ok I think I figured it out")
+  .output();
+
+// outputs:
+// Hmm let me think for a sec<break time="3s">Ok I think I figured it out
+// then emit with alexa-sdk
+// this.emit(':tell', ssml);
+```

@@ -11,6 +11,14 @@ describe('Alexa speechlet tests', function() {
     })
   });
 
+  describe("#emphasis()", function() {
+    it("Adds <emphasis tags to text with level", function() {
+      let speechlet = new Speechlet("Hi there.");
+      let ssml = speechlet.emphasis("how are you", { level: "strong" }).output();
+      assert.equal(ssml, `Hi there.<emphasis level="strong">how are you</emphasis>`);
+    });
+  });
+
   describe("#pause()", function() {
     it("Adds <break> tag to text", function() {
       let speechlet = new Speechlet("Hi I speak with long pauses.");
