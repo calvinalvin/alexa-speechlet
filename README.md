@@ -116,6 +116,40 @@ let ssml = new Speechlet().sayAsDate("September 22, 2015", "mdy").output();
 // this.emit(':tell', ssml);
 ```
 ---
+##### amazonEffect(text, options)
+- `text` | {String} - What Alexa says
+- `options` | {Object}
+  - `options.name` - The name of the effect. eg. "whispered"
+
+Wraps text with `<amazon:effect>` tags. Applies Amazon-specific effects to the speech.
+
+```js
+let speech = new Speechlet();
+let ssml = speech.amazonEffect("I'm going to whisper this.", { name: "whispered" }).output();
+
+// outputs:
+// <amazon:effect name="whispered">I'm going to whisper this.</amazon:effect>
+// then emit with alexa-sdk
+// this.emit(':tell', ssml);
+```
+
+---
+##### whisper(text)
+- `text` | {String} - What Alexa says
+
+Convenience fn for `amazonEffect(text, { name: "whispered" })`. Applies a whisper to the markup.
+
+```js
+let speech = new Speechlet();
+let ssml = speech.whisper("I'm going to whisper this.").output();
+
+// outputs:
+// <amazon:effect name="whispered">I'm going to whisper this.</amazon:effect>
+// then emit with alexa-sdk
+// this.emit(':tell', ssml);
+```
+
+---
 ##### prosody(text, options)
 - `text` | {String} - What Alexa says
 - `options` | {Object}
