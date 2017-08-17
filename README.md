@@ -22,7 +22,7 @@ let ssml = speech.sentence("I have a secret to tell you")
 
 You must execute the `output()` method on the speechlet instance in order to get the markup string. output() will not wrap the output in `<speak></speak>` nodes. If you are working with `alexa-sdk` the sdk will do that for you in the final output. If you, however, do want the output markup to be wrapped with the 'speak' nodes then you can use `outputWithRootNode()`,
 
-#### Methods
+### Methods
 
 ---
 ##### say(text)
