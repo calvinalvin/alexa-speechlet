@@ -1,9 +1,36 @@
+const _ = require('lodash');
+
 class Speechlet {
   constructor(text) {
     this._markup = [];
     if (text) {
       this._markup.push(text);
     }
+
+    this._exposeSayAsConvenienceMethods();
+  }
+
+  _exposeSayAsConvenienceMethods() {
+    let interpretAs = [
+      'characters',
+      'spell-out',
+      'cardinal',
+      'ordinal',
+      'digits',
+      'fraction',
+      'unit',
+      'date',
+      'time',
+      'telephone',
+      'address',
+      'interjection'
+    ];
+
+    interpretAs.forEach((as) => {
+      this[`sayAs${_.capitalize(_.camelCase(as))}`] = function(text) {
+        return this.sayAs(text, { interpretAs: as });
+      }
+    });
   }
 
   say(text) {
@@ -28,11 +55,6 @@ class Speechlet {
     }
 
     this._markup.push(`${openTag}>${text}${closeTag}`);
-    return this;
-  }
-
-  interpretAs(text, interpretation) {
-    this.sayAs(text, { interpretAs: interpretation });
     return this;
   }
 
