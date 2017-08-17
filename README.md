@@ -192,8 +192,8 @@ let ssml = speechlet
 
 ---
 
-##### pause(time)
-- `time` | {String} - The time value you want to pause
+##### pause(time="0.8s")
+- `time` | {String} - The time value you want to pause. Defaults to "0.8s"
 
 Convenience method for break. Adds `<break>` markup to your text with a time value. If you want more flexibility, use the `break()` fn. Represents a pause in the speech. Set the length of the pause with the strength or time attributes.
 
