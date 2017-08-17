@@ -1,6 +1,6 @@
 {
   "name": "alexa-speechlet",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Alexa speech synthesis markup generator (SSML), making it easy to do all the things.",
   "main": "index.js",
   "author": "Calvin Alvin",

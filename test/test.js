@@ -126,4 +126,15 @@ describe('Alexa speechlet tests', function() {
       assert.equal(ssml, `I can count.<break time="0.8s" /><say-as interpret-as="digits">12345</say-as>`);
     })
   });
+
+  describe("test chaining fn calls", function() {
+    it("can chain multiple calls", function() {
+      let speech = new Speechlet("Hi my name is Alexa.");
+      let ssml = speech.sentence("I have a secret to tell you")
+                        .whisper("I'm not a real human")
+                        .sentence("Right?")
+                        .output();
+      assert.equal(ssml, `Hi my name is Alexa.<s>I have a secret to tell you</s><amazon:effect name="whispered">I'm not a real human</amazon:effect><s>Right?</s>`);
+    });
+  });
 });
