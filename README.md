@@ -81,16 +81,16 @@ See [here](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/
 
 ---
 
-##### sayAsDigits(text, format)
+##### sayAsDate(text, format)
 - `text` | {String} - What Alexa says
 - `format` | {String} - The format of the date Alexa will read it as. For example "mdy". Read the  [Alexa docs](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#say-as) for explanation
 
-Convenience for `sayAs(text, {interpretAs: "digits", format: "mdy"})`. sayAsDate accepts an extra "format" param.
+Convenience for `sayAs(text, {interpretAs: "date", format: "mdy"})`. sayAsDate accepts an extra "format" param.
 
 ```js
-let ssml = new Speechlet().sayAsDigits("12345").output();`
+let ssml = new Speechlet().sayAsDate("September 22, 2015", "mdy").output();`
 // outputs:
-// <say-as interpret-as="digits">12345</say-as>
+// <say-as interpret-as="date" format="mdy">September 22, 2015</say-as>
 ```
 
 ---
