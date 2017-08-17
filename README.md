@@ -70,7 +70,7 @@ We do this for the following interpretations:
  - interjection
 
 
-Note: The convenience fn are named `sayAs` + the camelized, capitalized version of the interpretation. So the convenience fn for "spell-out" would be `sayAsSpellOut(text)`
+Note: The convenience fn are named `sayAs` + the capitalized version of the interpretation with dashes removed. So the convenience fn for "spell-out" would be `sayAsSpellout(text)`
 
 
 See [here](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#say-as) for the Alexa documentation for say-as. If I am missing anything feel free to make a PR.
