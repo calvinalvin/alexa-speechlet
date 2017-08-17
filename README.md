@@ -10,7 +10,7 @@ example usage
 ```js
 const Speechlet = require("alexa-speechlet");
 
-// the constructor can expect text on initialization
+// the constructor can accept text on initialization
 let speech = new Speechlet("Hi my name is Alexa.");
 let ssml = speech.sentence("I have a secret to tell you")
                   .whisper("I'm not a real human")
