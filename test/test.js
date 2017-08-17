@@ -3,6 +3,14 @@ const assert = require('assert');
 const _ = require('lodash');
 
 describe('Alexa speechlet tests', function() {
+  describe("#outputWithRootNode()", function() {
+    it("Wraps with <speak> tags", function() {
+      let speechlet = new Speechlet("Hi there.");
+      let ssml = speechlet.outputWithRootNode();
+      assert.equal(ssml, "<speak>Hi there.</speak>");
+    })
+  });
+
   describe("#pause()", function() {
     it("Adds <break> tag to text", function() {
       let speechlet = new Speechlet("Hi I speak with long pauses.");
