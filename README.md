@@ -60,9 +60,6 @@ Wraps your text with `<s></s>` tags.
 let ssml = new Speechlet().sentence("Hi, my name is Alexa").output();
 // outputs:
 // <s>Hi, my name is Alexa</s>
-
-// then emit with alexa-sdk
-// this.emit(':tell', ssml);
 ```
 
 ---
@@ -113,8 +110,6 @@ Convenience for `sayAs(text, {interpretAs: "date", format: "mdy"})`. sayAsDate a
 let ssml = new Speechlet().sayAsDate("September 22, 2015", "mdy").output();
 // outputs:
 // <say-as interpret-as="date" format="mdy">September 22, 2015</say-as>
-// then emit with alexa-sdk
-// this.emit(':tell', ssml);
 ```
 ---
 ##### amazonEffect(text, options)
@@ -130,8 +125,6 @@ let ssml = speech.amazonEffect("I'm going to whisper this.", { name: "whispered"
 
 // outputs:
 // <amazon:effect name="whispered">I'm going to whisper this.</amazon:effect>
-// then emit with alexa-sdk
-// this.emit(':tell', ssml);
 ```
 
 ---
@@ -146,8 +139,6 @@ let ssml = speech.whisper("I'm going to whisper this.").output();
 
 // outputs:
 // <amazon:effect name="whispered">I'm going to whisper this.</amazon:effect>
-// then emit with alexa-sdk
-// this.emit(':tell', ssml);
 ```
 
 ---
@@ -169,8 +160,6 @@ let ssml = speech.say("I'm going to say this really loud. Are you ready?")
 
 // outputs:
 // I'm going to say this really loud. Are you ready?<break time="1s" /><prosody volume="x-loud">AAHHH</prosody>
-// then emit with alexa-sdk
-// this.emit(':tell', ssml);
 ```
 
 ---
@@ -192,8 +181,6 @@ let ssml = speech.say("You say, ")
 
 // outputs:
 // You say, <phoneme alphabet="ipa" ph="pɪˈkɑːn">pecan</phoneme>.I say, <phoneme alphabet="ipa" ph="ˈpi.kæn">pecan</phoneme>.
-// then emit with alexa-sdk
-// this.emit(':tell', ssml);
 ```
 ---
 ##### break(options)
@@ -211,8 +198,6 @@ let ssml = speech.say("Let's see here")
 
 // outputs:
 // Let's see here<break strength="x-strong">Oh here it is
-// then emit with alexa-sdk
-// this.emit(':tell', ssml);
 ```
 
 ---
@@ -233,8 +218,6 @@ let ssml = speech.say("I already told you I")
 
 // outputs:
 // I already told you I<emphasis level="strong">really like</emphasis>that person
-// then emit with alexa-sdk
-// this.emit(':tell', ssml);
 ```
 
 ---
@@ -253,6 +236,4 @@ let ssml = speech.say("Hmm let me think for a sec")
 
 // outputs:
 // Hmm let me think for a sec<break time="3s">Ok I think I figured it out
-// then emit with alexa-sdk
-// this.emit(':tell', ssml);
 ```
