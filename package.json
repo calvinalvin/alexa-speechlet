@@ -28,6 +28,10 @@
     "alexa sdk",
     "amazon sdk",
     "alexa dictation",
-    "alexa dictate" 
+    "alexa dictate",
+    "vui",
+    "alexa skill",
+    "skill",
+    "alexa voice" 
   ]
 }

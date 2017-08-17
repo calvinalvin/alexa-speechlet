@@ -16,6 +16,8 @@ let ssml = speech.sentence("I have a secret to tell you")
 // output:
 // Hi my name is Alexa.<s>I have a secret to tell you</s><amazon:effect name="whispered">I'm not a real human</amazon:effect>
 
+// then emit with alexa-sdk
+// this.emit(':tell', ssml);
 ```
 
 ##### Remember to call output()
@@ -41,6 +43,9 @@ Wraps your text with `<s></s>` tags.
 let speechlet = new Speechlet().sentence("Hi, my name is Alexa");
 // outputs:
 // <s>Hi, my name is Alexa</s>
+
+// then emit with alexa-sdk
+// this.emit(':tell', ssml);
 ```
 
 ---
@@ -91,6 +96,8 @@ Convenience for `sayAs(text, {interpretAs: "date", format: "mdy"})`. sayAsDate a
 let ssml = new Speechlet().sayAsDate("September 22, 2015", "mdy").output();`
 // outputs:
 // <say-as interpret-as="date" format="mdy">September 22, 2015</say-as>
+// then emit with alexa-sdk
+// this.emit(':tell', ssml);
 ```
 ---
 ##### prosody(text, options)
@@ -112,7 +119,8 @@ let ssml = speechlet
 
 // outputs:
 // I'm going to say this really loud. Are you ready?<break time="1s" /><prosody volume="x-loud">AAHHH</prosody>
-
+// then emit with alexa-sdk
+// this.emit(':tell', ssml);
 ```
 
 ---
@@ -135,6 +143,8 @@ let ssml = speechlet
 
 // outputs:
 // You say, <phoneme alphabet="ipa" ph="pɪˈkɑːn">pecan</phoneme>.I say, <phoneme alphabet="ipa" ph="ˈpi.kæn">pecan</phoneme>.
+// then emit with alexa-sdk
+// this.emit(':tell', ssml);
 ```
 ---
 ##### break(options)
@@ -153,6 +163,8 @@ let ssml = speechlet
 
 // outputs:
 // Let's see here<break strength="x-strong">Oh here it is
+// then emit with alexa-sdk
+// this.emit(':tell', ssml);
 ```
 
 ---
