@@ -14,7 +14,7 @@ let ssml = speech.sentence("I have a secret to tell you")
                   .whisper("I'm not a real human")
                   .output();
 // output:
-// Hi my name is Alexa.I have a secret to tell you.<amazon:effect name="whispered">I'm not a real human</amazon:effect>
+// Hi my name is Alexa.<s>I have a secret to tell you</s><amazon:effect name="whispered">I'm not a real human</amazon:effect>
 
 ```
 
