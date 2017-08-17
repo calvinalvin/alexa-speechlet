@@ -40,7 +40,7 @@ Wraps your text with `<s></s>` tags.
 ```js
 let speechlet = new Speechlet().sentence("Hi, my name is Alexa");
 // outputs:
-// Hi, my name is Alexa.
+// <s>Hi, my name is Alexa</s>
 ```
 
 ---
