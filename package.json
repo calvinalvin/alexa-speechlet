@@ -1,6 +1,6 @@
 {
   "name": "alexa-speechlet",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Alexa speech markup generator, making it easy to do all the things.",
   "main": "index.js",
   "author": "Calvin Alvin",
@@ -32,6 +32,6 @@
     "vui",
     "alexa skill",
     "skill",
-    "alexa voice" 
+    "alexa voice"
   ]
 }
