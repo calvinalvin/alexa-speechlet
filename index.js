@@ -6,25 +6,13 @@ class Speechlet {
     if (text) {
       this._markup.push(text);
     }
-
     this._exposeSayAsConvenienceMethods();
   }
 
   _exposeSayAsConvenienceMethods() {
-    let interpretAs = [
-      'characters',
-      'spell-out',
-      'cardinal',
-      'ordinal',
-      'digits',
-      'fraction',
-      'unit',
-      'time',
-      'telephone',
-      'address',
-      'interjection'
+    let interpretAs = ['characters', 'spell-out', 'cardinal', 'ordinal', 'digits',
+      'fraction', 'unit', 'time', 'telephone', 'address', 'interjection'
     ];
-
     interpretAs.forEach((as) => {
       this[`sayAs${_.capitalize(_.camelCase(as))}`] = function(text) {
         return this.sayAs(text, { interpretAs: as });
@@ -72,7 +60,6 @@ class Speechlet {
     if (options.format) {
       openTag += ` format="${options.format}"`;
     }
-
     this._markup.push(`${openTag}>${text}${closeTag}`);
     return this;
   }
@@ -104,12 +91,9 @@ class Speechlet {
     if (options.volume) {
       openTag += ` volume="${options.volume}"`;
     }
-
     this._markup.push(`${openTag}>${text}${closeTag}`);
     return this;
   }
-
-
 
   /**
   * https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#amazon-effect
