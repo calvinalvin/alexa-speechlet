@@ -30,7 +30,21 @@ You must execute the `output()` method on the speechlet instance in order to get
 ##### say(text)
 - `text` | {String} - What Alexa says
 
-Adds text to the markup without adding any additional markup. It will spit out exactly what you enter as is.
+Adds text to the markup without adding anything. It will spit out exactly what you enter as is. This is useful for generating complex nested markup that you cannot achieve through the other methods.
+
+```js
+let simpleSpeech = new Speechlet();
+let simpleSSML = simpleSpeech.say("Hi. This is a simple sentence.").output();
+
+// simpleSSML outputs
+// Hi. This is a simple sentence.
+
+let complexSpeech = new Speechlet();
+let complexSSML = complexSpeech.say('<s>When <emphasis level="strong">I</emphasis> wake up, <prosody rate="x-slow">I speak quite slowly</prosody></s>').output();
+// complexSSML outputs
+// <s>When <emphasis level="strong">I</emphasis> wake up, <prosody rate="x-slow">I speak quite slowly</prosody></s>
+
+```
 
 
 ---

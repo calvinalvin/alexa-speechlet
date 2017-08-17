@@ -11,6 +11,14 @@ describe('Alexa speechlet tests', function() {
     })
   });
 
+  describe("#say()", function() {
+    it("Does not mutate the text", function() {
+      let speech = new Speechlet();
+      let ssml = speech.say(`<s>When <emphasis level="strong">I</emphasis> wake up, <prosody rate="x-slow">I speak quite slowly</prosody></s>`).output();
+      assert.equal(ssml, `<s>When <emphasis level="strong">I</emphasis> wake up, <prosody rate="x-slow">I speak quite slowly</prosody></s>`);
+    });
+  });
+
   describe("#emphasis()", function() {
     it("Adds <emphasis tags to text with level", function() {
       let speechlet = new Speechlet("Hi there.");
@@ -115,7 +123,7 @@ describe('Alexa speechlet tests', function() {
   describe("#pause", function() {
     it("can add break with defaults", function() {
       let ssml = new Speechlet("I can count.").pause().sayAs("12345", {interpretAs: "digits"}).output();
-      assert.equal(ssml, `I can count.<break strength="strong" /><say-as interpret-as="digits">12345</say-as>`);
+      assert.equal(ssml, `I can count.<break time="0.8s" /><say-as interpret-as="digits">12345</say-as>`);
     })
   });
 });
