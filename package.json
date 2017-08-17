@@ -1,10 +1,14 @@
 {
   "name": "alexa-speechlet",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Alexa speech markup generator, making it easy to do all the things.",
   "main": "index.js",
   "author": "Calvin Alvin",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/calvinalvin/alexa-speechlet"
+  },
   "engines": {
     "node": ">=0.6.10"
   },
