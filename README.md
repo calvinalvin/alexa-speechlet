@@ -93,7 +93,7 @@ We do this for the following interpretations:
  - time
  - telephone
  - address
- - interjection
+ - interjection (Useful for [speechcons](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speechcon-reference) Bazinga!)
 
 
 Note: The convenience fn are named `sayAs` + the capitalized version of the interpretation with dashes removed. So the convenience fn for "spell-out" would be `sayAsSpellout(text)`
