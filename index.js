@@ -147,7 +147,7 @@ class Speechlet {
   /**
   * convenience method for calling "break". This one only accepts a time param. If you need to use a break, with the "strength" attr, then use break();
   */
-  pause(time) {
+  pause(time="0.8s") {
     this.break({ time: time });
     return this;
   }
