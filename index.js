@@ -12,7 +12,7 @@ class Speechlet {
   }
 
   sentence(text) {
-    if (text[text.length] !== '.') {
+    if (text[text.length-1] !== '.') {
       text += '.';
     }
     this.say(text);
