@@ -42,6 +42,24 @@ class Speechlet {
     return this;
   }
 
+  paragraph(text) {
+    this._markup.push(`<p>${text}</p>`);
+    return this;
+  }
+
+  phoneme(text, options={}) {
+    let openTag = '<phoneme';
+    let closeTag = '</phoneme>';
+    if (options.alphabet) {
+      openTag += ` alphabet="${options.alphabet}"`;
+    }
+    if (options.ph) {
+      openTag += ` ph="${options.ph}"`;
+    }
+
+    this._markup.push(`${openTag}>${text}${closeTag}`);
+  }
+
   /**
   * https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#say-as
   */

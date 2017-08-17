@@ -92,10 +92,72 @@ let ssml = new Speechlet().sayAsDate("September 22, 2015", "mdy").output();`
 // outputs:
 // <say-as interpret-as="date" format="mdy">September 22, 2015</say-as>
 ```
+---
+##### prosody(text, options)
+- `text` | {String} - What Alexa says
+- `options` | {Object}
+  - `options.rate` - Modify the rate of the speech. eg. "x-slow", "slow", "fast", "80%"
+  - `options.pitch` - Raise or lower the tone (pitch) of the speech. eg "high", "x-high", "low", "-50%""
+  - `options.volume` - Change the volume for the speech. eg. "silent", "high", "loud", "+4.08dB"
+
+Modifies the volume, pitch, and rate of the tagged speech.
+
+```js
+let speechlet = new Speechlet();
+let ssml = speechlet
+  .say("I'm going to say this really loud. Are you ready?")
+  .pause('1s')
+  .prosody("AAHHH", { volume: "x-loud" });
+  .output();
+
+// outputs:
+// I'm going to say this really loud. Are you ready?<break time="1s" /><prosody volume="x-loud">AAHHH</prosody>
+
+```
+
+---
+##### phoneme(text, options)
+- `text` | {String} - What Alexa says
+- `options` | {Object}
+  - `options.alphabet` - Set to the phonetic alphabet to use eg. "ipa" or "x-sampa"
+  - `options.ph` - The phonetic pronunciation to speak. eg. "pɪˈkɑːn" for the word "pecan"
+
+Wraps text in `<phoneme>` tags. See docs on [phonemes and supported symbols here](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#phoneme). Phonemes provides a phonemic/phonetic pronunciation for the contained text. For example, people may pronounce words like “pecan” differently.
+
+```js
+let speechlet = new Speechlet();
+let ssml = speechlet
+  .say("You say, ")
+  .phoneme("pecan", { alphabet: "ipa", ph="pɪˈkɑːn" })
+  .say(".I say, ")
+  .phoneme("pecan", { alphabet: "ipa", ph="ˈpi.kæn" });
+  .output();
+
+// outputs:
+// You say, <phoneme alphabet="ipa" ph="pɪˈkɑːn">pecan</phoneme>.I say, <phoneme alphabet="ipa" ph="ˈpi.kæn">pecan</phoneme>.
+```
+---
+##### break(options)
+- `options` | {Object}
+  - `options.strength` - "none", "x-weak", "weak", "medium", "strong", "x-strong"
+  - `options.time` - Duration of the pause; up to 10 seconds (10s) or 10000 milliseconds (10000ms). Include the unit with the time (s or ms).
+Represents a pause in the speech. Set the length of the pause with the strength or time attributes.
+
+```js
+let speechlet = new Speechlet();
+let ssml = speechlet
+  .say("Let's see here")
+  .break({ strength: "x-strong" })
+  .say("Oh here it is")
+  .output();
+
+// outputs:
+// Let's see here<break strength="x-strong">Oh here it is
+```
 
 ---
 
 ##### pause(time)
 - `time` | {String} - The time value you want to pause
 
-Adds `<break>` markup to your text
+Convenience method for break. Adds `<break>` markup to your text with a time value. If you want more flexibility, use the `break()` fn. Represents a pause in the speech. Set the length of the pause with the strength or time attributes.
