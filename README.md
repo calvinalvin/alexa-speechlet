@@ -20,14 +20,16 @@ let ssml = speech.sentence("I have a secret to tell you")
 
 #### Methods
 
+---
 ##### say(text)
-- text {String} - What Alexa says
+- `text` | {String} - What Alexa says
 
 Adds text to the markup without adding any additional markup. It will spit out exactly what you enter as is.
 
 
+---
 ##### sentence(text)
-- text {String} - What Alexa says
+- `text` | {String} - What Alexa says
 
 A convenience method that makes sure that a period '.' is applied to the end of the text
 
@@ -37,10 +39,11 @@ let speechlet = new Speechlet().sentence("Hi, my name is Alexa");
 // Hi, my name is Alexa.
 ```
 
+---
 ##### sayAs(text, options)
-- text {String} - What Alexa says
-- options {Object}
- - options.interpretAs adds 'interpret-as' attr to the markup. Such as <say-as interpret-as="spell-out">
+- `text` | {String} - What Alexa says
+- `options` | {Object}
+  - `options.interpretAs` adds 'interpret-as' attr to the markup. Such as `<say-as interpret-as="spell-out">`
 
 Appends <say-as> markup to your text
 
@@ -49,3 +52,5 @@ let ssml = new Speechlet("I can count.").pause().sayAs("12345", {interpretAs: "d
 // outputs:
 // I can count.<say-as interpret-as="digits">12345</say-as>
 ```
+
+---
