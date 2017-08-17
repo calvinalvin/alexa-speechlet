@@ -56,6 +56,7 @@ class Speechlet {
     }
 
     this._markup.push(`${openTag}>${text}${closeTag}`);
+    return this;
   }
 
   /**
@@ -123,8 +124,7 @@ class Speechlet {
   * Convenience method for doing amazon:effect name="whisper"
   */
   whisper(text) {
-    this.amazonEffect(text, { name: "whispered" });
-    return this;
+    return this.amazonEffect(text, { name: "whispered" });
   }
 
   /**
@@ -148,8 +148,7 @@ class Speechlet {
   * convenience method for calling "break". This one only accepts a time param. If you need to use a break, with the "strength" attr, then use break();
   */
   pause(time="0.8s") {
-    this.break({ time: time });
-    return this;
+    return this.break({ time: time });
   }
 
   /**
