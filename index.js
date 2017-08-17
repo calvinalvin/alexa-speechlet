@@ -19,7 +19,6 @@ class Speechlet {
       'digits',
       'fraction',
       'unit',
-      'date',
       'time',
       'telephone',
       'address',
@@ -53,9 +52,19 @@ class Speechlet {
     if (options.interpretAs) {
       openTag += ` interpret-as="${options.interpretAs}"`;
     }
+    if (options.format) {
+      openTag += ` format="${options.format}"`;
+    }
 
     this._markup.push(`${openTag}>${text}${closeTag}`);
     return this;
+  }
+
+  /**
+  * special convenience method for sayAs because date also accepts a `format` argument
+  */
+  sayAsDate(text, format) {
+    return this.sayAs(text, { interpretAs: "date", format: format });
   }
 
   paragraph(text) {

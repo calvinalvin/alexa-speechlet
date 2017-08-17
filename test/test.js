@@ -57,6 +57,15 @@ describe('Alexa speechlet tests', function() {
     });
   });
 
+  describe("#sayAsDate", function() {
+    it(`testing convenience methof for sayAsDate because it accepts an extra "format" param`, function() {
+      let speechlet = new Speechlet();
+      let format = "mdy";
+      let ssml = speechlet.sayAsDate("September 2, 2015", "mdy").output();
+      assert.equal(ssml, `<say-as interpret-as="date" format="mdy">September 2, 2015</say-as>`);
+    });
+  });
+
   describe('#whisper()', function() {
     it('can whisper with amazon:effect', function() {
       let speechlet = new Speechlet("I have a secret.");

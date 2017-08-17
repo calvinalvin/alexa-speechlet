@@ -18,6 +18,10 @@ let ssml = speech.sentence("I have a secret to tell you")
 
 ```
 
+##### Remember to call output()
+
+You must execute the `.output()` method on the speechlet instance in order to get the markup string. output() will not wrap the output in `<speak></speak>` xml nodes. If you are working with `alexa-sdk` the sdk will do that for you in the final output so the nodes were left out by default so it would be more convenient. If you, however, do want the output markup to be wrapped with the 'speak' nodes then you can call `.outputWithRootNode()`,
+
 #### Methods
 
 ---
@@ -77,10 +81,11 @@ See [here](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/
 
 ---
 
-##### sayAsDigits(text)
+##### sayAsDigits(text, format)
 - `text` | {String} - What Alexa says
+- `format` | {String} - The format of the date Alexa will read it as. For example "mdy". Read the  [Alexa docs](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#say-as) for explanation
 
-Convenience for `sayAs(text, {interpretAs: "digits"})`
+Convenience for `sayAs(text, {interpretAs: "digits", format: "mdy"})`. sayAsDate accepts an extra "format" param.
 
 ```js
 let ssml = new Speechlet().sayAsDigits("12345").output();`
