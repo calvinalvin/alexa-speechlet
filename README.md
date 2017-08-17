@@ -40,7 +40,7 @@ Adds text to the markup without adding any additional markup. It will spit out e
 Wraps your text with `<s></s>` tags.
 
 ```js
-let speechlet = new Speechlet().sentence("Hi, my name is Alexa");
+let ssml = new Speechlet().sentence("Hi, my name is Alexa").output();
 // outputs:
 // <s>Hi, my name is Alexa</s>
 
@@ -57,7 +57,7 @@ let speechlet = new Speechlet().sentence("Hi, my name is Alexa");
 Wraps your text with `<say-as>` tags
 
 ```js
-let ssml = new Speechlet("I can count.").pause().sayAs("12345", {interpretAs: "digits"}).output();`
+let ssml = new Speechlet("I can count.").pause().sayAs("12345", {interpretAs: "digits"}).output();
 // outputs:
 // I can count.<break strength="strong" /><say-as interpret-as="digits">12345</say-as>
 ```
@@ -93,7 +93,7 @@ See [here](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/
 Convenience for `sayAs(text, {interpretAs: "date", format: "mdy"})`. sayAsDate accepts an extra "format" param.
 
 ```js
-let ssml = new Speechlet().sayAsDate("September 22, 2015", "mdy").output();`
+let ssml = new Speechlet().sayAsDate("September 22, 2015", "mdy").output();
 // outputs:
 // <say-as interpret-as="date" format="mdy">September 22, 2015</say-as>
 // then emit with alexa-sdk
@@ -110,12 +110,11 @@ let ssml = new Speechlet().sayAsDate("September 22, 2015", "mdy").output();`
 Modifies the volume, pitch, and rate of the tagged speech.
 
 ```js
-let speechlet = new Speechlet();
-let ssml = speechlet
-  .say("I'm going to say this really loud. Are you ready?")
-  .pause('1s')
-  .prosody("AAHHH", { volume: "x-loud" });
-  .output();
+let speech = new Speechlet();
+let ssml = speech.say("I'm going to say this really loud. Are you ready?")
+                 .pause('1s')
+                 .prosody("AAHHH", { volume: "x-loud" });
+                 .output();
 
 // outputs:
 // I'm going to say this really loud. Are you ready?<break time="1s" /><prosody volume="x-loud">AAHHH</prosody>
@@ -133,13 +132,12 @@ let ssml = speechlet
 Wraps text in `<phoneme>` tags. See docs on [phonemes and supported symbols here](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#phoneme). Phonemes provides a phonemic/phonetic pronunciation for the contained text. For example, people may pronounce words like “pecan” differently.
 
 ```js
-let speechlet = new Speechlet();
-let ssml = speechlet
-  .say("You say, ")
-  .phoneme("pecan", { alphabet: "ipa", ph="pɪˈkɑːn" })
-  .say(".I say, ")
-  .phoneme("pecan", { alphabet: "ipa", ph="ˈpi.kæn" });
-  .output();
+let speech = new Speechlet();
+let ssml = speech.say("You say, ")
+                 .phoneme("pecan", { alphabet: "ipa", ph="pɪˈkɑːn" })
+                 .say(".I say, ")
+                 .phoneme("pecan", { alphabet: "ipa", ph="ˈpi.kæn" });
+                 .output();
 
 // outputs:
 // You say, <phoneme alphabet="ipa" ph="pɪˈkɑːn">pecan</phoneme>.I say, <phoneme alphabet="ipa" ph="ˈpi.kæn">pecan</phoneme>.
@@ -154,9 +152,8 @@ let ssml = speechlet
 Represents a pause in the speech. Set the length of the pause with the strength or time attributes.
 
 ```js
-let speechlet = new Speechlet();
-let ssml = speechlet
-  .say("Let's see here")
+let speech = new Speechlet();
+let ssml = speech.say("Let's see here")
   .break({ strength: "x-strong" })
   .say("Oh here it is")
   .output();
@@ -177,12 +174,11 @@ let ssml = speechlet
 Wraps the text with `<emphasis>` tags. Emphasize the tagged words or phrases. Emphasis changes rate and volume of the speech. More emphasis is spoken louder and slower. Less emphasis is quieter and faster. See [docs](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#emphasis)
 
 ```js
-let speechlet = new Speechlet();
-let ssml = speechlet
-  .say("I already told you I")
-  .emphasis("really like", { level: "strong" })
-  .say("that person")
-  .output();
+let speech = new Speechlet();
+let ssml = speech.say("I already told you I")
+                 .emphasis("really like", { level: "strong" })
+                 .say("that person")
+                 .output();
 
 // outputs:
 // I already told you I<emphasis level="strong">really like</emphasis>that person
@@ -195,15 +191,14 @@ let ssml = speechlet
 ##### pause(time="0.8s")
 - `time` | {String} - The time value you want to pause. Defaults to "0.8s"
 
-Convenience method for break. Adds `<break>` markup to your text with a time value. If you want more flexibility, use the `break()` fn. Represents a pause in the speech. Set the length of the pause with the strength or time attributes.
+Convenience method for break. Adds `<break>` markup to your text with a time value. If you want more flexibility, use the `break()` fn. Represents a pause in the speech. Set the length of the pause with the time attribute.
 
 ```js
-let speechlet = new Speechlet();
-let ssml = speechlet
-  .say("Hmm let me think for a sec")
-  .pause("3s")
-  .say("Ok I think I figured it out")
-  .output();
+let speech = new Speechlet();
+let ssml = speech.say("Hmm let me think for a sec")
+                 .pause("3s")
+                 .say("Ok I think I figured it out")
+                 .output();
 
 // outputs:
 // Hmm let me think for a sec<break time="3s">Ok I think I figured it out
