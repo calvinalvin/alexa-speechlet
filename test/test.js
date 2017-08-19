@@ -11,6 +11,47 @@ describe('Alexa speechlet tests', function() {
     })
   });
 
+  describe("#w()", function() {
+    it("Add <w> tag with role attribute", function() {
+      let speech = new Speechlet();
+      let ssml = speech.say(`The past tense of read is.`)
+                        .w("read", { role: "amazon:VBD" })
+                        .output();
+
+      assert.equal(ssml, `The past tense of read is.<w role="amazon:VBD">read</w>`);
+    });
+  });
+
+  describe("#w() convenience method sayAsVerb()", function() {
+    it("Add <w> tag with role amazon:VB attribute", function() {
+      let speech = new Speechlet();
+      let ssml = speech.sayAsVerb(`read`)
+                        .output();
+
+      assert.equal(ssml, `<w role="amazon:VB">read</w>`);
+    });
+  });
+
+  describe("#w() convenience method sayAsNoun()", function() {
+    it("Add <w> tag with role amazon:NN attribute", function() {
+      let speech = new Speechlet();
+      let ssml = speech.sayAsNoun(`read`)
+                        .output();
+
+      assert.equal(ssml, `<w role="amazon:NN">read</w>`);
+    });
+  });
+
+  describe("#w() convenience method sayAsPastParticiple()", function() {
+    it("Add <w> tag with role amazon:VBD attribute", function() {
+      let speech = new Speechlet();
+      let ssml = speech.sayAsPastParticiple(`read`)
+                        .output();
+
+      assert.equal(ssml, `<w role="amazon:VBD">read</w>`);
+    });
+  });
+
   describe("#say()", function() {
     it("Does not mutate the text", function() {
       let speech = new Speechlet();
@@ -20,7 +61,7 @@ describe('Alexa speechlet tests', function() {
   });
 
   describe("#emphasis()", function() {
-    it("Adds <emphasis tags to text with level", function() {
+    it("Adds <emphasis> tags to text with level", function() {
       let speechlet = new Speechlet("Hi there.");
       let ssml = speechlet.emphasis("how are you", { level: "strong" }).output();
       assert.equal(ssml, `Hi there.<emphasis level="strong">how are you</emphasis>`);

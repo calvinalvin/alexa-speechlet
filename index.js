@@ -20,6 +20,11 @@ class Speechlet {
     });
   }
 
+  /**
+  * Emphasize the tagged words or phrases. Emphasis changes rate and volume of the speech.
+  * More emphasis is spoken louder and slower. Less emphasis is quieter and faster.
+  * https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#emphasis
+  */
   emphasis(text, options) {
     let openTag = `<emphasis`;
     let closeTag = '</emphasis>';
@@ -30,21 +35,39 @@ class Speechlet {
     return this;
   }
 
+  /**
+  * Adds raw text without any changes.
+  */
   say(text) {
     this._markup.push(text);
     return this;
   }
 
+  /**
+  * Wraps text in <s> tags. This is equivalent to ending a sentence with a period (.)
+  * or specifying a pause with <break strength="strong"/>.
+  * https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#s
+  */
   sentence(text) {
     this._markup.push(`<s>${text}</s>`);
     return this;
   }
 
+  /**
+  * Represents a paragraph. This tag provides extra-strong breaks before and after the tag.
+  * This is equivalent to specifying a pause with <break strength="x-strong"/>.
+  * https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#p
+  */
   paragraph(text) {
     this._markup.push(`<p>${text}</p>`);
     return this;
   }
 
+  /**
+  * Provides a phonemic/phonetic pronunciation for the contained text.
+  * For example, people may pronounce words like “pecan” differently.
+  * https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#phoneme
+  */
   phoneme(text, options={}) {
     let openTag = '<phoneme';
     let closeTag = '</phoneme>';
@@ -60,7 +83,10 @@ class Speechlet {
   }
 
   /**
-  * https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#say-as
+  * Describes how the text should be interpreted.
+  * This lets you provide additional context to the text and eliminate any ambiguity
+  * on how Alexa should render the text. Indicate how Alexa should interpret the text
+  * with the interpret-as attribute. https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#say-as
   */
   sayAs(text, options={}) {
     let openTag = '<say-as';
@@ -80,6 +106,41 @@ class Speechlet {
   */
   sayAsDate(text, format) {
     return this.sayAs(text, { interpretAs: "date", format: format });
+  }
+
+  /**
+  * special convenience method for sayAs because date also accepts a `format` argument
+  */
+  sayAsVerb(text) {
+    return this.w(text, { role: "amazon:VB" });
+  }
+
+  /**
+  * special convenience method for sayAs because date also accepts a `format` argument
+  */
+  sayAsNoun(text) {
+    return this.w(text, { role: "amazon:NN" });
+  }
+
+  /**
+  * special convenience method for sayAs because date also accepts a `format` argument
+  */
+  sayAsPastParticiple(text) {
+    return this.w(text, { role: "amazon:VBD" });
+  }
+
+  /**
+  * Similar to <say-as>, this tag customizes the pronunciation of words by specifying the word’s part of speech.
+  * https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#w
+  */
+  w(text, options={}) {
+    let openTag = '<w';
+    let closeTag = '</w>';
+    if (options.role) {
+      openTag += ` role="${options.role}"`;
+    }
+    this._markup.push(`${openTag}>${text}${closeTag}`);
+    return this;
   }
 
   paragraph(text) {

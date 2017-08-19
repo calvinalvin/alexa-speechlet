@@ -110,6 +110,44 @@ let ssml = new Speechlet().sayAsDate("September 22, 2015", "mdy").output();
 // <say-as interpret-as="date" format="mdy">September 22, 2015</say-as>
 ```
 ---
+
+##### sayAsVerb(text)
+- `text` | {String} - What Alexa says
+
+Convenience for `w(text, {role:"amazon:VB"})`. Pronounces the word as a verb.
+
+```js
+let ssml = new Speechlet().sayAsVerb("read").output();
+// outputs:
+// <w role="amazon:VB">read</w>
+```
+---
+
+##### sayAsNoun(text)
+- `text` | {String} - What Alexa says
+
+Convenience for `w(text, {role:"amazon:NN"})`. Pronounces the word as a noun.
+
+```js
+let ssml = new Speechlet().sayAsVerb("read").output();
+// outputs:
+// <w role="amazon:NN">read</w>
+```
+
+---
+
+##### sayAsPastParticiple(text)
+- `text` | {String} - What Alexa says
+
+Convenience for `w(text, {role:"amazon:VBD"})`. Pronounces the word in past tense.
+
+```js
+let ssml = new Speechlet().sayAsVerb("read").output();
+// outputs:
+// <w role="amazon:VBD">read</w>
+```
+
+---
 ##### amazonEffect(text, options)
 - `text` | {String} - What Alexa says
 - `options` | {Object}
