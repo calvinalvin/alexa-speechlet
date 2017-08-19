@@ -11,6 +11,24 @@ describe('Alexa speechlet tests', function() {
     })
   });
 
+  describe("#audio()", function() {
+    it("Adds <audio> tag with src attribue", function() {
+      let speech = new Speechlet();
+      let ssml = speech.audio("http://example.com/audio_file.mp3");
+      assert(ssml, `<audio src="https://example.com/audio_file.mp3" />`);
+    });
+  });
+
+  describe("#sub()", function() {
+    it("Adds <sub> tag with alias attribue", function() {
+      let speech = new Speechlet();
+      let ssml = speech.say("My favorite chemical element is ")
+                      .sub("Al", { alias: "aluminum" })
+                      .output();
+      assert(ssml, `My favorite chemical element is <sub alias="aluminum">Al</sub>`);
+    });
+  });
+
   describe("#w()", function() {
     it("Add <w> tag with role attribute", function() {
       let speech = new Speechlet();

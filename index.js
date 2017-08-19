@@ -21,6 +21,16 @@ class Speechlet {
   }
 
   /**
+  * The audio tag lets you provide the URL for an MP3 file that the Alexa service can play
+  * while rendering a response. You can use this to embed short, pre-recorded audio within your service’s response.
+  * https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#audio
+  */
+  audio(src="") {
+    this._markup.push(`<audio src="${src}" />`);
+    return this;
+  }
+
+  /**
   * Emphasize the tagged words or phrases. Emphasis changes rate and volume of the speech.
   * More emphasis is spoken louder and slower. Less emphasis is quieter and faster.
   * https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#emphasis
@@ -78,6 +88,21 @@ class Speechlet {
       openTag += ` ph="${options.ph}"`;
     }
 
+    this._markup.push(`${openTag}>${text}${closeTag}`);
+    return this;
+  }
+
+  /**
+  * Pronounce the specified word or phrase as a different word or phrase.
+  * Specify the pronunciation to substitute with the alias attribute.
+  * https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#sub
+  */
+  sub(text, options={}) {
+    let openTag = '<sub';
+    let closeTag = '</sub>';
+    if (options.alias) {
+      openTag += ` alias="${options.alias}"`;
+    }
     this._markup.push(`${openTag}>${text}${closeTag}`);
     return this;
   }

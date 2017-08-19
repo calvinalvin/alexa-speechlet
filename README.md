@@ -273,3 +273,39 @@ let ssml = speech.say("Hmm let me think for a sec")
 // outputs:
 // Hmm let me think for a sec<break time="3s">Ok I think I figured it out
 ```
+
+---
+
+##### audio(src)
+- `src` | {String} - The source url of the audio file
+
+The audio tag lets you provide the URL for an MP3 file that the Alexa service can play while rendering a response. You can use this to embed short, pre-recorded audio within your service’s response. For example, you could include sound effects alongside your text-to-speech responses, or provide responses using a voice associated with your brand. For more information, see Including Short Pre-Recorded Audio in your Response.
+
+```js
+let speech = new Speechlet();
+let ssml = speech.audio("http://example.com/audio_file.mp3")
+                 .output();
+
+// outputs:
+// <audio src="http://example.com/audio_file.mp3" />
+```
+
+---
+
+##### sub(text, options)
+- `text` | {String} - What Alexa says
+- `options` | {Object}
+  `options.alias` - The url of the audio file
+
+The word or phrase to speak in place of the tagged text.
+
+
+```js
+let speech = new Speechlet();
+let ssml = speech.say("My favorite chemical element is ")
+                 .sub("Al", { alias: "aluminum" })
+                 .output();
+
+// outputs:
+// My favorite chemical element is <sub alias="aluminum">Al</sub>
+```
