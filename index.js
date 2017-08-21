@@ -20,6 +20,12 @@ class Speechlet {
     });
   }
 
+  _escape(text) {
+    return text.replace('&', '&amp;')
+      .replace('<', '&lt;')
+      .replace('>', '&gt;');
+  }
+
   /**
   * The audio tag lets you provide the URL for an MP3 file that the Alexa service can play
   * while rendering a response. You can use this to embed short, pre-recorded audio within your service’s response.
@@ -41,7 +47,7 @@ class Speechlet {
     if (options.level) {
       openTag += ` level="${options.level}"`;
     }
-    this._markup.push(`${openTag}>${text}${closeTag}`);
+    this._markup.push(`${openTag}>${this._escape(text)}${closeTag}`);
     return this;
   }
 
@@ -59,7 +65,7 @@ class Speechlet {
   * https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#s
   */
   sentence(text) {
-    this._markup.push(`<s>${text}</s>`);
+    this._markup.push(`<s>${this._escape(text)}</s>`);
     return this;
   }
 
@@ -69,7 +75,7 @@ class Speechlet {
   * https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#p
   */
   paragraph(text) {
-    this._markup.push(`<p>${text}</p>`);
+    this._markup.push(`<p>${this._escape(text)}</p>`);
     return this;
   }
 
@@ -88,7 +94,7 @@ class Speechlet {
       openTag += ` ph="${options.ph}"`;
     }
 
-    this._markup.push(`${openTag}>${text}${closeTag}`);
+    this._markup.push(`${openTag}>${this._escape(text)}${closeTag}`);
     return this;
   }
 
@@ -103,7 +109,7 @@ class Speechlet {
     if (options.alias) {
       openTag += ` alias="${options.alias}"`;
     }
-    this._markup.push(`${openTag}>${text}${closeTag}`);
+    this._markup.push(`${openTag}>${this._escape(text)}${closeTag}`);
     return this;
   }
 
@@ -122,7 +128,7 @@ class Speechlet {
     if (options.format) {
       openTag += ` format="${options.format}"`;
     }
-    this._markup.push(`${openTag}>${text}${closeTag}`);
+    this._markup.push(`${openTag}>${this._escape(text)}${closeTag}`);
     return this;
   }
 
@@ -164,12 +170,12 @@ class Speechlet {
     if (options.role) {
       openTag += ` role="${options.role}"`;
     }
-    this._markup.push(`${openTag}>${text}${closeTag}`);
+    this._markup.push(`${openTag}>${this._escape(text)}${closeTag}`);
     return this;
   }
 
   paragraph(text) {
-    this._markup.push(`<p>${text}</p>`);
+    this._markup.push(`<p>${this._escape(text)}</p>`);
     return this;
   }
 
@@ -188,7 +194,7 @@ class Speechlet {
     if (options.volume) {
       openTag += ` volume="${options.volume}"`;
     }
-    this._markup.push(`${openTag}>${text}${closeTag}`);
+    this._markup.push(`${openTag}>${this._escape(text)}${closeTag}`);
     return this;
   }
 
@@ -202,7 +208,7 @@ class Speechlet {
     if (options.name) {
       openTag += ` name="${options.name}"`;
     }
-    this._markup.push(`${openTag}>${text}${closeTag}`);
+    this._markup.push(`${openTag}>${this._escape(text)}${closeTag}`);
     return this;
   }
 

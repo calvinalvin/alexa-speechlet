@@ -3,6 +3,18 @@ const assert = require('assert');
 const _ = require('lodash');
 
 describe('Alexa speechlet tests', function() {
+  describe('test escaping of special characters', function() {
+    it("escapes &, <, >", function() {
+      let speechlet = new Speechlet("Testing escaping.");
+      let ssml = speechlet.sentence("This & that")
+                          .sentence("1 is < 2")
+                          .sentence("3 is > 2")
+                          .output();
+                          
+      assert.equal(ssml, `Testing escaping.<s>This &amp; that</s><s>1 is &lt; 2</s><s>3 is &gt; 2</s>`);
+    });
+  });
+
   describe("#outputWithRootNode()", function() {
     it("Wraps with <speak> tags", function() {
       let speechlet = new Speechlet("Hi there.");
