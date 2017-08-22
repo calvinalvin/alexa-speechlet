@@ -35,7 +35,7 @@ Speechlet will automatically escape the special characters `&`, `<` and `>` for 
 ##### say(text)
 - `text` | {String} - What Alexa says
 
-Adds text to the markup without adding anything. It will spit out exactly what you enter as is. This is useful for generating complex nested markup that you cannot achieve through the other methods.
+Adds text to the markup without modifying or adding anything. It will spit out exactly what you enter as is. This is useful for generating complex nested markup that you cannot achieve through the other methods.
 
 ```js
 let simpleSpeech = new Speechlet();
