@@ -245,7 +245,7 @@ let ssml = speech.say("Let's see here")
 ##### emphasis(text, options)
 - `text` | {String} - What Alexa says
 - `options` | {Object}
-  `options.level` - "strong", "moderate", "reduced"
+  - `options.level` - "strong", "moderate", "reduced"
 
 Wraps the text with `<emphasis>` tags. Emphasize the tagged words or phrases. Emphasis changes rate and volume of the speech. More emphasis is spoken louder and slower. Less emphasis is quieter and faster. See [docs](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#emphasis)
 
@@ -299,7 +299,7 @@ let ssml = speech.audio("http://example.com/audio_file.mp3")
 ##### sub(text, options)
 - `text` | {String} - What Alexa says
 - `options` | {Object}
-  `options.alias` - The url of the audio file
+  - `options.alias` - The url of the audio file
 
 The word or phrase to speak in place of the tagged text.
 
@@ -320,8 +320,8 @@ let ssml = speech.say("My favorite chemical element is ")
 - `list` | {Array<String>} - Array of string items
 - `seperator` | {String} - string seperator between list items, default is "and"
 - `options` | {Object}
-  `options.pauseBeforeSeperator` - adds a pause before seperator, eg "2s"
-  `options.pauseAfterSeperator` - adds a pause after seperator
+  - `options.pauseBeforeSeperator` - adds a pause before seperator, eg "2s"
+  - `options.pauseAfterSeperator` - adds a pause after seperator
 
 Pass an array of strings that will be read as a list. The options allow for flexibility in controlling the dictation speed.
 
@@ -342,7 +342,7 @@ let ssml = speech.sentence("I own lots of different types of animals.")
 ##### readAsNumberedList(list, options={})
 - `list` | {Array<String>} - Array of string items
 - `options` | {Object}
-  `options.pause` - adds a pause before seperator, default "0.2s"
+  - `options.pause` - adds a pause before seperator, default "0.2s"
 
 Pass an array of strings that will be read as a numbered list.
 
@@ -363,7 +363,7 @@ let ssml = speech.sentence("This is your todo list")
 ##### readAsOrdinalList(list, options={})
 - `list` | {Array<String>} - Array of string items
 - `options` | {Object}
-  `options.pause` - adds a pause before seperator, default "0.2s"
+  - `options.pause` - adds a pause before seperator, default "0.2s"
 
 Pass an array of strings that will be read as an ordinal list. The numbered items are read in ordinal form (first, second, third etc...)
 
