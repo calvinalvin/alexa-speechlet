@@ -351,7 +351,7 @@ Pass an array of strings that will be read as a numbered list.
 let speech = new Speechlet();
 let todoList = ['buy shampoo', 'book flight to Seattle', 'make dinner reservations'];
 let ssml = speech.sentence("This is your todo list")
-                 .readAsNumberedList(list, { pause: "0.4s" })
+                 .readAsNumberedList(todoList, { pause: "0.4s" })
                  .output();
 
 // outputs:
@@ -372,7 +372,7 @@ Pass an array of strings that will be read as an ordinal list. The numbered item
 let speech = new Speechlet();
 let todoList = ['buy shampoo', 'book flight to Seattle', 'make dinner reservations'];
 let ssml = speech.sentence("This is your todo list")
-                 .readAsNumberedList(list, { pause: "0.4s" })
+                 .readAsNumberedList(todoList, { pause: "0.4s" })
                  .output();
 
 // outputs:
