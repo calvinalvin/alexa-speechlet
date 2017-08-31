@@ -326,16 +326,15 @@ let ssml = speech.say("My favorite chemical element is ")
 
 Pass an array of strings that will be read as a list. The options allow for flexibility in controlling the dictation speed.
 
-
 ```js
 let speech = new Speechlet();
 let list = ['dogs', 'cats', 'lions'];
 let ssml = speech.sentence("I own lots of different types of animals.")
-                 .readAsList(list, "and", { pauseBeforeSeperator: "0.2s" })
+                 .readAsList(list, { separator: "I have", pauseBeforeSeperator: "0.2s", lastSeparator: 'and also' })
                  .output();
 
 // outputs:
-// <s>I own lots of different types of animals.</s>dogs <break time="0.2s" />and cats <break time="0.2s" />and lions
+// <s>I own lots of different types of animals.</s>I have dogs <break time="0.2s" />I have cats <break time="0.2s" />and also lions
 ```
 
 ---
