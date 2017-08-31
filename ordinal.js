@@ -28,10 +28,11 @@ class Speechlet {
   }
 
   /*
-  * Helps Alexa easily read a list as a numbered list
+  * Read a list of items as numbered list.
   * @params {array[string]} list - a list of things for Alexa to read
+  * @params {string} seperator - a string word to seperate the reading of the list, defaults to "and"
   * @param {object} options
-  *   options.pause - control the pause time between items
+  *   options.pause - injects a pause between items
   */
   readAsNumberedList(list, options={}) {
     list.forEach((el, i) => {
@@ -47,10 +48,11 @@ class Speechlet {
   }
 
   /*
-  * Helps Alexa easily read a list as ordinal items
+  * Read a list of items as an ordinal list
   * @params {array[string]} list - a list of things for Alexa to read
+  * @params {string} seperator - a string word to seperate the reading of the list, defaults to "and"
   * @param {object} options
-  *   options.pause - control the pause time between items
+  *   options.pause - injects a pause between items
   */
   readAsOrdinalList(list, options={}) {
     list.forEach((el, i) => {
@@ -66,7 +68,7 @@ class Speechlet {
   }
 
   /*
-  * Helps Alexa easily read a list of items with easy customization
+  * Helps Alexa easily read a list of items
   * @params {array[string]} list - a list of things for Alexa to read
   * @params {string} seperator - a string word to seperate the reading of the list, defaults to "and"
   * @param {object} options

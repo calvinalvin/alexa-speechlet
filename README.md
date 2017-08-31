@@ -313,3 +313,68 @@ let ssml = speech.say("My favorite chemical element is ")
 // outputs:
 // My favorite chemical element is <sub alias="aluminum">Al</sub>
 ```
+
+---
+
+##### readAsList(list, seperator="and", options={})
+- `list` | {Array<String>} - Array of string items
+- `seperator` | {String} - string seperator between list items, default is "and"
+- `options` | {Object}
+  `options.pauseBeforeSeperator` - adds a pause before seperator, eg "2s"
+  `options.pauseAfterSeperator` - adds a pause after seperator
+
+Pass an array of strings that will be read as a list. The options allow for flexibility in controlling the dictation speed.
+
+
+```js
+let speech = new Speechlet();
+let list = ['dogs', 'cats', 'lions'];
+let ssml = speech.sentence("I own lots of different types of animals.")
+                 .readAsList(list, "and", { pauseBeforeSeperator: "0.2s" })
+                 .output();
+
+// outputs:
+// <s>I own lots of different types of animals.</s>dogs <break time="0.2s" />and cats <break time="0.2s" />and lions
+```
+
+---
+
+##### readAsNumberedList(list, options={})
+- `list` | {Array<String>} - Array of string items
+- `options` | {Object}
+  `options.pause` - adds a pause before seperator, default "0.2s"
+
+Pass an array of strings that will be read as a numbered list.
+
+
+```js
+let speech = new Speechlet();
+let todoList = ['buy shampoo', 'book flight to Seattle', 'make dinner reservations'];
+let ssml = speech.sentence("This is your todo list")
+                 .readAsNumberedList(list, { pause: "0.4s" })
+                 .output();
+
+// outputs:
+// <s>This is your todo list</s>1, buy shampoo<break time="0.4s" />2, book flight to Seattle<break time="0.4s" />3, make dinner reservations
+```
+
+---
+
+##### readAsOrdinalList(list, options={})
+- `list` | {Array<String>} - Array of string items
+- `options` | {Object}
+  `options.pause` - adds a pause before seperator, default "0.2s"
+
+Pass an array of strings that will be read as an ordinal list. The numbered items are read in ordinal form (first, second, third etc...)
+
+
+```js
+let speech = new Speechlet();
+let todoList = ['buy shampoo', 'book flight to Seattle', 'make dinner reservations'];
+let ssml = speech.sentence("This is your todo list")
+                 .readAsNumberedList(list, { pause: "0.4s" })
+                 .output();
+
+// outputs:
+// <s>This is your todo list</s>first, buy shampoo<break time="0.4s" />second, book flight to Seattle<break time="0.4s" />third, make dinner reservations
+```
