@@ -316,12 +316,13 @@ let ssml = speech.say("My favorite chemical element is ")
 
 ---
 
-#### readAsList(list, seperator="and", options={})
+#### readAsList(list, options={})
 - `list` | {Array<String>} - Array of string items
-- `seperator` | {String} - string seperator between list items, default is "and"
 - `options` | {Object}
-  - `options.pauseBeforeSeperator` - adds a pause before seperator, eg "2s"
-  - `options.pauseAfterSeperator` - adds a pause after seperator
+  - `options.separator` {String} - separator between list items, default is "and"
+  - `options.lastSeparator` {String} - a string value to use for the last separator. For instance when reading a list, naturally you read the last item with a different conjunction. For instance. "These are your books. Book 1, Book 2 and Book 3" Notice that you say "and Book 3" for the last item.
+  - `options.pauseBeforeSeparator` {String} - adds a pause before separator, eg "2s"
+  - `options.pauseAfterSeparator` {String} - adds a pause after separator
 
 Pass an array of strings that will be read as a list. The options allow for flexibility in controlling the dictation speed.
 

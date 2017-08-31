@@ -34,6 +34,10 @@ class Speechlet {
   *   options.pause - control the pause time between items
   */
   readAsNumberedList(list, options={}) {
+    if (!Array.isArray(list)) {
+      throw new Error("readAsNumberedList [arg list must be an array]");
+    }
+
     list.forEach((el, i) => {
       this.say(`${i+1}, ${this._escape(el)}`);
       if (options.pause) {
@@ -53,6 +57,10 @@ class Speechlet {
   *   options.pause - control the pause time between items
   */
   readAsOrdinalList(list, options={}) {
+    if (!Array.isArray(list)) {
+      throw new Error("readAsOrdinalList [arg list must be an array]");
+    }
+
     list.forEach((el, i) => {
       this.say(`${ordinal.translate(i+1)}, ${this._escape(el)}`);
       if (options.pause) {
@@ -68,24 +76,32 @@ class Speechlet {
   /*
   * Helps Alexa easily read a list of items with easy customization
   * @params {array[string]} list - a list of things for Alexa to read
-  * @params {string} seperator - a string word to seperate the reading of the list, defaults to "and"
+  * @params {string} separator - a string word to seperate the reading of the list, defaults to "and"
   * @param {object} options
-  *   options.pauseBeforeSeperator - injects a pause before the seperator
-  *   options.pauseAfterSeperator - injects a pause after the seperator
+  *   options.lastSeparator - a string value to use for the last seperator. For instance when reading a list, naturally you read the last item with a different conjunction. For instance. "These are your books. Book 1, Book 2 and Book 3" Notice that you say "and Book 3" for the last item.
+  *   options.pauseBeforeSeparator - injects a pause before the seperator
+  *   options.pauseAfterSeparator - injects a pause after the seperator
   */
-  readAsList(list, seperator="and", options={}) {
+  readAsList(list, options={}) {
+    if (!Array.isArray(list)) {
+      throw new Error("readAsOrdinalList [arg list must be an array]");
+    }
+
+    const separator = options.separator || "and";
     list.forEach((el, i) => {
       if (i !== list.length-1) {
         this.say(`${this._escape(el)} `);
-        if (options.pauseBeforeSeperator) {
-          this.pause(options.pauseBeforeSeperator);
+        if (options.pauseBeforeSeparator) {
+          this.pause(options.pauseBeforeSeparator);
         }
 
-        this.say(`${this._escape(seperator)} `);
+        this.say(`${this._escape(separator)} `);
 
-        if (options.pauseAfterSeperator) {
-          this.pause(options.pauseAfterSeperator);
+        if (options.pauseAfterSeparator) {
+          this.pause(options.pauseAfterSeparator);
         }
+      } else if (options.lastSeparator) {
+        this.say(`${options.lastSeparator} ${this._escape(el)}`);
       } else {
         this.say(this._escape(el));
       }
