@@ -32,7 +32,7 @@ Speechlet will automatically escape the special characters `&`, `<` and `>` for 
 ### Methods
 
 ---
-##### say(text)
+#### say(text)
 - `text` | {String} - What Alexa says
 
 Adds text to the markup without modifying or adding anything. It will spit out exactly what you enter as is. This is useful for generating complex nested markup that you cannot achieve through the other methods.
@@ -53,7 +53,7 @@ let complexSSML = complexSpeech.say('<s>When <emphasis level="strong">I</emphasi
 
 
 ---
-##### sentence(text)
+#### sentence(text)
 - `text` | {String} - What Alexa says
 
 Wraps your text with `<s></s>` tags.
@@ -65,7 +65,7 @@ let ssml = new Speechlet().sentence("Hi, my name is Alexa").output();
 ```
 
 ---
-##### sayAs(text, options)
+#### sayAs(text, options)
 - `text` | {String} - What Alexa says
 - `options` | {Object}
   - `options.interpretAs` adds 'interpret-as' attr to the markup. Such as `<say-as interpret-as="spell-out">`
@@ -102,7 +102,7 @@ See [here](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/
 
 ---
 
-##### sayAsDate(text, format)
+#### sayAsDate(text, format)
 - `text` | {String} - What Alexa says
 - `format` | {String} - The format of the date Alexa will read it as. For example "mdy". Read the  [Alexa docs](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#say-as) for explanation
 
@@ -115,7 +115,7 @@ let ssml = new Speechlet().sayAsDate("September 22, 2015", "mdy").output();
 ```
 ---
 
-##### sayAsVerb(text)
+#### sayAsVerb(text)
 - `text` | {String} - What Alexa says
 
 Convenience for `w(text, {role:"amazon:VB"})`. Pronounces the word as a verb.
@@ -127,7 +127,7 @@ let ssml = new Speechlet().sayAsVerb("read").output();
 ```
 ---
 
-##### sayAsNoun(text)
+#### sayAsNoun(text)
 - `text` | {String} - What Alexa says
 
 Convenience for `w(text, {role:"amazon:NN"})`. Pronounces the word as a noun.
@@ -140,7 +140,7 @@ let ssml = new Speechlet().sayAsVerb("read").output();
 
 ---
 
-##### sayAsPastParticiple(text)
+#### sayAsPastParticiple(text)
 - `text` | {String} - What Alexa says
 
 Convenience for `w(text, {role:"amazon:VBD"})`. Pronounces the word in past tense.
@@ -152,7 +152,7 @@ let ssml = new Speechlet().sayAsVerb("read").output();
 ```
 
 ---
-##### amazonEffect(text, options)
+#### amazonEffect(text, options)
 - `text` | {String} - What Alexa says
 - `options` | {Object}
   - `options.name` - The name of the effect. eg. "whispered"
@@ -168,7 +168,7 @@ let ssml = speech.amazonEffect("I'm going to whisper this.", { name: "whispered"
 ```
 
 ---
-##### whisper(text)
+#### whisper(text)
 - `text` | {String} - What Alexa says
 
 Convenience fn for `amazonEffect(text, { name: "whispered" })`. Applies a whisper to the markup.
@@ -182,7 +182,7 @@ let ssml = speech.whisper("I'm going to whisper this.").output();
 ```
 
 ---
-##### prosody(text, options)
+#### prosody(text, options)
 - `text` | {String} - What Alexa says
 - `options` | {Object}
   - `options.rate` - Modify the rate of the speech. eg. "x-slow", "slow", "fast", "80%"
@@ -203,7 +203,7 @@ let ssml = speech.say("I'm going to say this really loud. Are you ready?")
 ```
 
 ---
-##### phoneme(text, options)
+#### phoneme(text, options)
 - `text` | {String} - What Alexa says
 - `options` | {Object}
   - `options.alphabet` - Set to the phonetic alphabet to use eg. "ipa" or "x-sampa"
@@ -223,7 +223,7 @@ let ssml = speech.say("You say, ")
 // You say, <phoneme alphabet="ipa" ph="pɪˈkɑːn">pecan</phoneme>.I say, <phoneme alphabet="ipa" ph="ˈpi.kæn">pecan</phoneme>.
 ```
 ---
-##### break(options)
+#### break(options)
 - `options` | {Object}
   - `options.strength` - "none", "x-weak", "weak", "medium", "strong", "x-strong"
   - `options.time` - Duration of the pause; up to 10 seconds (10s) or 10000 milliseconds (10000ms). Include the unit with the time (s or ms).
@@ -242,7 +242,7 @@ let ssml = speech.say("Let's see here")
 
 ---
 
-##### emphasis(text, options)
+#### emphasis(text, options)
 - `text` | {String} - What Alexa says
 - `options` | {Object}
   - `options.level` - "strong", "moderate", "reduced"
@@ -262,7 +262,7 @@ let ssml = speech.say("I already told you I")
 
 ---
 
-##### pause(time="0.8s")
+#### pause(time="0.8s")
 - `time` | {String} - The time value you want to pause. Defaults to "0.8s"
 
 Convenience method for break. Adds `<break>` markup to your text with a time value. If you want more flexibility, use the `break()` fn. Represents a pause in the speech. Set the length of the pause with the time attribute.
@@ -280,7 +280,7 @@ let ssml = speech.say("Hmm let me think for a sec")
 
 ---
 
-##### audio(src)
+#### audio(src)
 - `src` | {String} - The source url of the audio file
 
 The audio tag lets you provide the URL for an MP3 file that the Alexa service can play while rendering a response. You can use this to embed short, pre-recorded audio within your service’s response. For example, you could include sound effects alongside your text-to-speech responses, or provide responses using a voice associated with your brand. For more information, see Including Short Pre-Recorded Audio in your Response.
@@ -296,7 +296,7 @@ let ssml = speech.audio("http://example.com/audio_file.mp3")
 
 ---
 
-##### sub(text, options)
+#### sub(text, options)
 - `text` | {String} - What Alexa says
 - `options` | {Object}
   - `options.alias` - The url of the audio file
@@ -316,7 +316,7 @@ let ssml = speech.say("My favorite chemical element is ")
 
 ---
 
-##### readAsList(list, seperator="and", options={})
+#### readAsList(list, seperator="and", options={})
 - `list` | {Array<String>} - Array of string items
 - `seperator` | {String} - string seperator between list items, default is "and"
 - `options` | {Object}
@@ -339,7 +339,7 @@ let ssml = speech.sentence("I own lots of different types of animals.")
 
 ---
 
-##### readAsNumberedList(list, options={})
+#### readAsNumberedList(list, options={})
 - `list` | {Array<String>} - Array of string items
 - `options` | {Object}
   - `options.pause` - adds a pause before seperator, default "0.2s"
@@ -360,7 +360,7 @@ let ssml = speech.sentence("This is your todo list")
 
 ---
 
-##### readAsOrdinalList(list, options={})
+#### readAsOrdinalList(list, options={})
 - `list` | {Array<String>} - Array of string items
 - `options` | {Object}
   - `options.pause` - adds a pause before seperator, default "0.2s"
