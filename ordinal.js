@@ -41,7 +41,7 @@ module.exports = {
     else if (intNum > 20) {
       return 'Numbers greater than 20 are not yet supported';
     }
-    
-    return _ithMap(intNum);
+
+    return _ithMap[intNum];
   }
 };
