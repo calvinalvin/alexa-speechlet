@@ -75,7 +75,7 @@ class Speechlet {
   */
   readAsList(list, seperator="and", options={}) {
     list.forEach((el, i) => {
-      if (i !== arr.length-1) {
+      if (i !== list.length-1) {
         this.say(`${this._escape(el)} `);
         if (options.pauseBeforeSeperator) {
           this.pause(options.pauseBeforeSeperator);
