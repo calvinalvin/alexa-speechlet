@@ -11,7 +11,7 @@ describe('Alexa speechlet tests', function() {
                           .sentence("3 is > 2")
                           .output();
 
-      assert.equal(ssml, `Testing escaping.<s>This &amp; that</s><s>1 is &lt; 2</s><s>3 is &gt; 2</s>`);
+      assert.equal(ssml, `Testing escaping.<s>This  and  that</s><s>1 is  less than  2</s><s>3 is  greater than  2</s>`);
     });
   });
 
@@ -34,7 +34,7 @@ describe('Alexa speechlet tests', function() {
       let speechlet2 = new Speechlet();
       let ssml2 = speechlet2.sentence(ssml).output();
 
-      assert.equal(ssml2, "<s>&lt;s&gt;This is the first sentence.&lt;/s&gt;&lt;s&gt;This is the second sentence.&lt;/s&gt;</s>");
+      assert.equal(ssml2, "<s> less than s greater than This is the first sentence. less than /s greater than  less than s greater than This is the second sentence. less than /s greater than </s>");
     });
   });
 

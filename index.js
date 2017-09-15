@@ -22,9 +22,9 @@ class Speechlet {
   }
 
   _escape(text) {
-    return text.replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
+    return text.replace(/&/g, ' and ')
+      .replace(/</g, ' less than ')
+      .replace(/>/g, ' greater than ');
   }
 
   /*
