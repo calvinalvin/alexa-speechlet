@@ -10,8 +10,31 @@ describe('Alexa speechlet tests', function() {
                           .sentence("1 is < 2")
                           .sentence("3 is > 2")
                           .output();
-                          
+
       assert.equal(ssml, `Testing escaping.<s>This &amp; that</s><s>1 is &lt; 2</s><s>3 is &gt; 2</s>`);
+    });
+  });
+
+  describe('#multiple sentences', function() {
+    it("Works with multiple sentences.", function() {
+      let speechlet = new Speechlet();
+      let ssml = speechlet.sentence("This is the first sentence.")
+                          .sentence("This is the second sentence.")
+                          .output();
+
+      assert.equal(ssml, "<s>This is the first sentence.</s><s>This is the second sentence.</s>");
+    });
+
+    it("Works with speechlet outputs sent into new sentences.", function() {
+      let speechlet = new Speechlet();
+      let ssml = speechlet.sentence("This is the first sentence.")
+                          .sentence("This is the second sentence.")
+                          .output();
+
+      let speechlet2 = new Speechlet();
+      let ssml2 = speechlet2.sentence(ssml).output();
+
+      assert.equal(ssml2, "<s>&lt;s&gt;This is the first sentence.&lt;/s&gt;&lt;s&gt;This is the second sentence.&lt;/s&gt;</s>");
     });
   });
 
