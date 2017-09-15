@@ -51,6 +51,11 @@ let complexSSML = complexSpeech.say('<s>When <emphasis level="strong">I</emphasi
 
 ```
 
+---
+#### raw(text)
+- `text` | {String} - What Alexa says
+
+For convenience and code readability. Exactly the same as `say()`
 
 ---
 #### sentence(text)

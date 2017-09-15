@@ -138,9 +138,16 @@ class Speechlet {
   /**
   * Adds raw text without any changes.
   */
-  say(text) {
+  raw(text) {
     this._markup.push(text);
     return this;
+  }
+
+  /**
+  * Adds raw text without any changes.
+  */
+  say(text) {
+    return this.raw(text);
   }
 
   /**

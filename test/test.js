@@ -113,6 +113,14 @@ describe('Alexa speechlet tests', function() {
     });
   });
 
+  describe("#raw()", function() {
+    it("Does not mutate the text", function() {
+      let speech = new Speechlet();
+      let ssml = speech.raw(`<s>When <emphasis level="strong">I</emphasis> wake up, <prosody rate="x-slow">I speak quite slowly</prosody></s>`).output();
+      assert.equal(ssml, `<s>When <emphasis level="strong">I</emphasis> wake up, <prosody rate="x-slow">I speak quite slowly</prosody></s>`);
+    });
+  });
+
   describe("#emphasis()", function() {
     it("Adds <emphasis> tags to text with level", function() {
       let speechlet = new Speechlet("Hi there.");
