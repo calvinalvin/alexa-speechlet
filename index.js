@@ -100,7 +100,7 @@ class Speechlet {
         if (options.pauseAfterSeparator) {
           this.pause(options.pauseAfterSeparator);
         }
-      } else if (options.lastSeparator) {
+      } else if (options.lastSeparator && list.length > 1) {
         this.say(`${options.lastSeparator} ${this._escape(el)}`);
       } else {
         this.say(this._escape(el));
