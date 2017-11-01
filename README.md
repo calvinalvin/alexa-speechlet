@@ -10,12 +10,14 @@ example usage
 ```js
 const Speechlet = require("alexa-speechlet");
 
-let speech = new Speechlet("Hi my name is Alexa.");
-let ssml = speech.sentence("I have a secret to tell you")
-                  .whisper("I'm not a real human")
-                  .output();
-// output:
-// Hi my name is Alexa.<s>I have a secret to tell you</s><amazon:effect name="whispered">I'm not a real human</amazon:effect>
+let speech = new Speechlet();
+let todoList = ['buy shampoo', 'book flight to Seattle', 'make dinner reservations'];
+let ssml = speech.sentence("This is your todo list")
+                 .readAsOrdinalList(todoList, { pause: "0.4s" })
+                 .output();
+
+// outputs:
+// <s>This is your todo list</s>first, buy shampoo<break time="0.4s" />second, book flight to Seattle<break time="0.4s" />third, make dinner reservations
 
 // then emit with alexa-sdk
 // this.emit(':tell', ssml);
